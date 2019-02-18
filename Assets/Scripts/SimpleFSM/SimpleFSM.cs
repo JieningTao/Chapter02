@@ -89,7 +89,7 @@ public class SimpleFSM : FSM
     {
 
         //if player is closer than set amount, self destructs causing AOE damage
-
+        Explode();
     }
     /// <summary>
     /// Patrol state
