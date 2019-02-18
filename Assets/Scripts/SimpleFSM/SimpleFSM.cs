@@ -87,6 +87,7 @@ public class SimpleFSM : FSM
 
     protected void UpdateSelfDestructState()
     {
+
         //if player is closer than set amount, self destructs causing AOE damage
 
     }
@@ -107,6 +108,11 @@ public class SimpleFSM : FSM
         {
             print("Switch to Chase Position");
             curState = FSMState.Chase;
+        }
+        else if (Vector3.Distance(transform.position, playerTransform.position) <= 100.0f)
+        {
+            print("Switch to Chase Position");
+            curState = FSMState.SelfDestruct;
         }
 
         //Rotate to the target point
@@ -136,6 +142,11 @@ public class SimpleFSM : FSM
         else if (dist >= 300.0f)
         {
             curState = FSMState.Patrol;
+        }
+        else if (Vector3.Distance(transform.position, playerTransform.position) <= 100.0f)
+        {
+            print("Switch to Chase Position");
+            curState = FSMState.SelfDestruct;
         }
 
         //Go Forward
