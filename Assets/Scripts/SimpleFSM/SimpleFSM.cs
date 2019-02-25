@@ -109,10 +109,15 @@ public class SimpleFSM : FSM
             print("Switch to Chase Position");
             curState = FSMState.Chase;
         }
-        else if (Vector3.Distance(transform.position, playerTransform.position) <= 100.0f)
+        else if (Vector3.Distance(transform.position, playerTransform.position) <= 300.0f)
         {
-            print("Switch to Chase Position");
-            curState = FSMState.SelfDestruct;
+
+            if (Random.Range(1, 101) <= 30)
+            {
+                print("Switch to Self Destruct Position");
+                curState = FSMState.SelfDestruct;
+            }
+            
         }
 
         //Rotate to the target point
@@ -173,12 +178,19 @@ public class SimpleFSM : FSM
             transform.Translate(Vector3.forward * Time.deltaTime * curSpeed);
 
             curState = FSMState.Attack;
+
+            if (Random.Range(1, 101) <= 30)
+            {
+                print("Switch to Self Destruct Position");
+                curState = FSMState.SelfDestruct;
+            }
         }
         //Transition to patrol is the tank become too far
         else if (dist >= 300.0f)
         {
             curState = FSMState.Patrol;
-        }        
+        } 
+        
 
         //Always Turn the turret towards the player
         Quaternion turretRotation = Quaternion.LookRotation(destPos - turret.position);
